@@ -14,3 +14,14 @@ a {
 * {
   box-sizing: border-box;
 }
+
+body {
+  background-color: #0f172a;
+  color: #a7f3d0;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
