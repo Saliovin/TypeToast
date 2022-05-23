@@ -38,10 +38,6 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header>
-        <h2>TypeToast</h2>
-      </header>
-
       <div className={styles.container}>
         <Header />
         <div className={styles.container}>
