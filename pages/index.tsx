@@ -57,7 +57,6 @@ const Home: NextPage = () => {
       </Head>
 
       <Header />
-      <Cursor style="line" />
       <WordSet wordList={testList} />
       <Footer />
     </div>
