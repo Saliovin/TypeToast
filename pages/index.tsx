@@ -26,6 +26,24 @@ const Home: NextPage = () => {
     "from",
     "help",
     "where",
+    "make",
+    "test",
+    "all",
+    "comfort",
+    "true",
+    "accent",
+    "tore",
+    "pines",
+    "test",
+    "gold",
+    "west",
+    "repeat",
+    "barret",
+    "normal",
+    "cast",
+    "less",
+    "peace",
+    "quarts",
   ];
   return (
     <div className={styles.container}>
@@ -38,14 +56,10 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={styles.container}>
-        <Header />
-        <div className={styles.container}>
-          <Cursor style="line" />
-          <WordSet wordList={testList} />
-        </div>
-        <Footer />
-      </div>
+      <Header />
+      <Cursor style="line" />
+      <WordSet wordList={testList} />
+      <Footer />
     </div>
   );
 };
