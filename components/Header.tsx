@@ -3,9 +3,9 @@ import styles from "../styles/Header.module.css";
 
 const Header = () => {
   return (
-    <header className={styles.header}>
+    <header>
       <h2>TypeToast</h2>
-      <nav>
+      <nav className={styles.nav}>
         <ul>
           <li>
             <Link href="/">
