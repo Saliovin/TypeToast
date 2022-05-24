@@ -1,7 +1,7 @@
 import styles from "../styles/Footer.module.css";
 
 const Footer = () => {
-  return <div className={styles.footer}>Built with NextJS</div>;
+  return <footer className={styles.footer}>Built with NextJS</footer>;
 };
 
 export default Footer;

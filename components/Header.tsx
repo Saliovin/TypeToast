@@ -3,7 +3,7 @@ import styles from "../styles/Header.module.css";
 
 const Header = () => {
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <h2>TypeToast</h2>
       <nav>
         <ul>
@@ -24,7 +24,7 @@ const Header = () => {
           </li>
         </ul>
       </nav>
-    </div>
+    </header>
   );
 };
 
