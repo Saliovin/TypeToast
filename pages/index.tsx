@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Cursor from "../components/Cursor";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import WordSet from "../components/WordSet";
