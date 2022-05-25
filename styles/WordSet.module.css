@@ -1,4 +1,8 @@
 .wordSet {
   display: flex;
   flex-wrap: wrap;
+  overflow: hidden;
+  height: 6rem;
+  width: 60vw;
+  margin: 0 auto;
 }
