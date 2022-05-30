@@ -3,13 +3,20 @@ import Word from "./Word";
 
 type Props = {
   wordList: string[];
+  activeLetterIndex: number;
+  activeWordIndex: number;
 };
 
-const WordSet = ({ wordList }: Props) => {
+const WordSet = ({ wordList, activeLetterIndex, activeWordIndex }: Props) => {
   return (
     <div className={styles.wordSet}>
-      {wordList.map((word) => (
-        <Word word={word} key={word} />
+      {wordList.map((word, i) => (
+        <Word
+          word={word}
+          activeLetterIndex={activeLetterIndex}
+          isActive={activeWordIndex === i}
+          key={i}
+        />
       ))}
     </div>
   );
