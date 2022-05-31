@@ -8,18 +8,23 @@ type Props = {
 };
 
 const WordSet = ({ wordList, activeLetterIndex, activeWordIndex }: Props) => {
-  return (
-    <div className={styles.wordSet}>
-      {wordList.map((word, i) => (
-        <Word
-          word={word}
-          activeLetterIndex={activeLetterIndex}
-          isActive={activeWordIndex === i}
-          key={i}
-        />
-      ))}
-    </div>
-  );
+  const componentList = wordList.map((word, i) => {
+    let wordStatus = "passive";
+
+    if (activeWordIndex === i) wordStatus = "active";
+    else if (activeWordIndex > i) wordStatus = "done";
+
+    return (
+      <Word
+        word={word}
+        activeLetterIndex={activeLetterIndex}
+        status={wordStatus}
+        key={i}
+      />
+    );
+  });
+
+  return <div className={styles.wordSet}>{componentList}</div>;
 };
 
 export default WordSet;

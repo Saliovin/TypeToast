@@ -2,13 +2,11 @@ import styles from "../styles/Letter.module.css";
 
 type Props = {
   char: string;
-  isActive: boolean;
+  status: string;
 };
 
-const Letter = ({ char, isActive }: Props) => {
-  const classList = [styles.letter];
-  isActive ? classList.push(styles.activeLetter) : null;
-  return <div className={classList.join(" ")}>{char}</div>;
+const Letter = ({ char, status }: Props) => {
+  return <div className={`${styles.letter} ${styles[status]}`}>{char}</div>;
 };
 
 export default Letter;

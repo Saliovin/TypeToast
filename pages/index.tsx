@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import WordSet from "../components/WordSet";
@@ -49,7 +49,7 @@ const Home: NextPage = () => {
   const [activeWordIndex, setActiveWordIndex] = useState(0);
   const [activeLetterIndex, setActiveLetterIndex] = useState(0);
 
-  const handleKeyPress = ({ key }: any) => {
+  const handleKeyPress = ({ key }: React.KeyboardEvent) => {
     if (key.length !== 1) return;
 
     if (key === wordSetString[activeWordIndex][activeLetterIndex]) {

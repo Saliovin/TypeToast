@@ -4,23 +4,24 @@ import Letter from "./Letter";
 type Props = {
   word: string;
   activeLetterIndex: number;
-  isActive: boolean;
+  status: string;
 };
 
-const Word = ({ word, activeLetterIndex, isActive }: Props) => {
-  const componentList = word
-    .split("")
-    .map((char, i) => (
-      <Letter
-        char={char}
-        isActive={activeLetterIndex === i && isActive}
-        key={i}
-      />
-    ));
-  const classList = [styles.word];
-  isActive ? classList.push(styles.activeWord) : null;
+const Word = ({ word, activeLetterIndex, status }: Props) => {
+  const componentList = word.split("").map((char, i) => {
+    let letterStatus = "passive";
 
-  return <div className={classList.join(" ")}>{componentList}</div>;
+    if (status === "active") {
+      if (activeLetterIndex === i) letterStatus = "active";
+      else if (activeLetterIndex > i) letterStatus = "done";
+    }
+
+    return <Letter char={char} status={letterStatus} key={i} />;
+  });
+
+  return (
+    <div className={`${styles.word} ${styles[status]}`}>{componentList}</div>
+  );
 };
 
 export default Word;
