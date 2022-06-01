@@ -3,15 +3,19 @@ import Letter from "./Letter";
 
 type Props = {
   word: string;
+  wordRef: any;
   activeLetterIndex: number;
   status: string;
 };
 
-const Word = ({ word, activeLetterIndex, status }: Props) => {
+const Word = ({ word, wordRef, activeLetterIndex, status }: Props) => {
+  let ref = null;
+
   const componentList = word.split("").map((char, i) => {
     let letterStatus = "passive";
 
     if (status === "active") {
+      ref = wordRef;
       if (activeLetterIndex === i) letterStatus = "active";
       else if (activeLetterIndex > i) letterStatus = "done";
     }
@@ -20,7 +24,9 @@ const Word = ({ word, activeLetterIndex, status }: Props) => {
   });
 
   return (
-    <div className={`${styles.word} ${styles[status]}`}>{componentList}</div>
+    <div className={`${styles.word} ${styles[status]}`} ref={ref}>
+      {componentList}
+    </div>
   );
 };
 

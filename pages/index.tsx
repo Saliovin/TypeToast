@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import WordSet from "../components/WordSet";
@@ -48,6 +48,8 @@ const Home: NextPage = () => {
   const [wordSetString, setWordSetString] = useState(testList);
   const [activeWordIndex, setActiveWordIndex] = useState(0);
   const [activeLetterIndex, setActiveLetterIndex] = useState(0);
+  const activeWord = useRef<HTMLDivElement>(null);
+  const main = useRef<HTMLDivElement>(null);
 
   const handleKeyPress = ({ key }: React.KeyboardEvent) => {
     if (key.length !== 1) return;
@@ -66,8 +68,22 @@ const Home: NextPage = () => {
     }
   };
 
+  useEffect(() => {
+    if (activeWord.current !== null)
+      activeWord.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+  }, [activeWordIndex]);
+  useEffect(() => main.current?.focus());
+
   return (
-    <div className={styles.container} onKeyDown={handleKeyPress} tabIndex={0}>
+    <div
+      className={styles.container}
+      onKeyDown={handleKeyPress}
+      tabIndex={0}
+      ref={main}
+    >
       <Head>
         <title>TypeToast</title>
         <meta
@@ -82,6 +98,7 @@ const Home: NextPage = () => {
         wordList={testList}
         activeLetterIndex={activeLetterIndex}
         activeWordIndex={activeWordIndex}
+        wordRef={activeWord}
       />
       <Footer />
     </div>
