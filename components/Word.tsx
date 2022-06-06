@@ -4,41 +4,41 @@ import Letter from "./Letter";
 
 type Props = {
   word: string;
+  typedWord: string;
   wordRef: Ref<HTMLDivElement>;
   activeLetterIndex: number;
   status: string;
-  extraLetters: string;
 };
 
 const Word = ({
   word,
+  typedWord = "",
   wordRef,
   activeLetterIndex,
   status,
-  extraLetters,
 }: Props) => {
   let ref = null;
-  const [prefix, setPrefix] = useState("");
   const componentList = word.split("").map((char, i) => {
     let letterStatus = "passive";
 
     if (status === "active") {
       ref = wordRef;
       if (activeLetterIndex === i) letterStatus = "active";
-      else if (activeLetterIndex > i) letterStatus = "correct";
+    }
+    if (typedWord.charAt(i) != "") {
+      if (typedWord.charAt(i) === char) letterStatus = "correct";
+      else letterStatus = "incorrect";
     }
 
     return <Letter char={char} status={letterStatus} key={i} />;
   });
-
-  if (status === "active" && prefix != extraLetters) {
-    setPrefix(extraLetters);
-  }
+  const suffix =
+    typedWord.length > word.length ? typedWord.slice(word.length, -1) : "";
 
   return (
     <div className={`${styles.word} ${styles[status]}`} ref={ref}>
       {componentList}
-      {prefix.split("").map((char, i) => (
+      {suffix.split("").map((char, i) => (
         <Letter char={char} status="incorrect" key={i} />
       ))}
     </div>

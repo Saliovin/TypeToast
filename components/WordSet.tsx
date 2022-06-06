@@ -4,35 +4,33 @@ import Word from "./Word";
 
 type Props = {
   wordList: string[];
+  typedWordList: string[];
   activeLetterIndex: number;
   activeWordIndex: number;
   wordRef: RefObject<HTMLDivElement>;
-  extraLetters: string;
 };
 
 const WordSet = ({
   wordList,
+  typedWordList,
   activeLetterIndex,
   activeWordIndex,
   wordRef,
-  extraLetters,
 }: Props) => {
   const componentList = wordList.map((word, i) => {
     let wordStatus = "passive";
-    let prefix = "";
 
     if (activeWordIndex === i) {
       wordStatus = "active";
-      prefix = extraLetters;
     } else if (activeWordIndex > i) wordStatus = "done";
 
     return (
       <Word
         word={word}
+        typedWord={typedWordList[i]}
         activeLetterIndex={activeLetterIndex}
         wordRef={wordRef}
         status={wordStatus}
-        extraLetters={prefix}
         key={i}
       />
     );

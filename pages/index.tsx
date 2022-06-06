@@ -46,27 +46,28 @@ const Home: NextPage = () => {
     "quarts",
   ];
   const [wordSetString, setWordSetString] = useState(testList);
+  const [typedWordList, setTypedWordList] = useState("");
   const [activeWordIndex, setActiveWordIndex] = useState(0);
   const [activeLetterIndex, setActiveLetterIndex] = useState(0);
-  const [extraLetters, setExtraLetters] = useState("");
   const activeWord = useRef<HTMLDivElement>(null);
   const main = useRef<HTMLDivElement>(null);
 
   const handleKeyPress = ({ key }: React.KeyboardEvent) => {
     if (key.length !== 1) return;
 
+    setTypedWordList(typedWordList + key);
     if (key === wordSetString[activeWordIndex][activeLetterIndex]) {
       setActiveLetterIndex(activeLetterIndex + 1);
     } else if (activeLetterIndex >= wordSetString[activeWordIndex].length) {
       if (key === " ") {
         setActiveWordIndex(activeWordIndex + 1);
         setActiveLetterIndex(0);
-        setExtraLetters("");
       } else {
-        setExtraLetters(extraLetters + key);
         setActiveLetterIndex(activeLetterIndex + 1);
       }
-    } else setActiveLetterIndex(activeLetterIndex + 1);
+    } else {
+      setActiveLetterIndex(activeLetterIndex + 1);
+    }
   };
 
   useEffect(() => {
@@ -97,10 +98,10 @@ const Home: NextPage = () => {
       <Header />
       <WordSet
         wordList={testList}
+        typedWordList={typedWordList.split(" ")}
         activeLetterIndex={activeLetterIndex}
         activeWordIndex={activeWordIndex}
         wordRef={activeWord}
-        extraLetters={extraLetters}
       />
       <Footer />
     </div>
