@@ -32,8 +32,9 @@ const Word = ({
 
     return <Letter char={char} status={letterStatus} key={i} />;
   });
+
   const suffix =
-    typedWord.length > word.length ? typedWord.slice(word.length, -1) : "";
+    typedWord.length > word.length ? typedWord.slice(word.length - 1, -1) : "";
 
   return (
     <div className={`${styles.word} ${styles[status]}`} ref={ref}>
