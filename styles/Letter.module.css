@@ -1,3 +1,23 @@
 .letter {
   font-size: 1.1rem;
 }
+
+.waiting {
+  color: #059669;
+}
+
+.passive {
+  color: #a7f3d0;
+}
+
+.active {
+  color: #ecfdf5;
+}
+
+.correct {
+  color: #a5b4fc;
+}
+
+.incorrect {
+  color: #f43f5e;
+}

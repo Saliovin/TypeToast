@@ -7,6 +7,9 @@
   width: 70vw;
   height: 100vh;
 }
+.container:focus {
+  outline: none;
+}
 
 .word {
   padding: 0 1rem;

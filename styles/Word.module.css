@@ -2,3 +2,13 @@
   display: flex;
   padding: 0.2rem;
 }
+
+.done {
+  opacity: 0.5;
+}
+
+.incorrect {
+  opacity: 0.5;
+  border-bottom: #f43f5e solid 0.1rem;
+  margin-bottom: -0.1rem;
+}

@@ -1,8 +1,9 @@
 .nav ul {
   display: flex;
   justify-content: space-between;
-  width: 30vw;
-  min-width: 10rem;
-  max-width: 12rem;
   font-size: 0.8rem;
+}
+
+.nav ul li {
+  padding-left: 1rem;
 }
