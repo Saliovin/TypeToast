@@ -22,8 +22,10 @@ const WordSet = ({
 
     if (activeWordIndex === i) {
       wordStatus = "active";
-    } else if (activeWordIndex > i) wordStatus = "done";
-
+    } else if (activeWordIndex > i) {
+      if (typedWordList[i] != word) wordStatus = "incorrect";
+      else wordStatus = "done";
+    }
     return (
       <Word
         word={word}

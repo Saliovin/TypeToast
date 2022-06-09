@@ -19,28 +19,27 @@ const Word = ({
 }: Props) => {
   let ref = null;
   const componentList = word.split("").map((char, i) => {
-    let letterStatus = "passive";
+    let letterStatus = "waiting";
 
     if (status === "active") {
       ref = wordRef;
       if (activeLetterIndex === i) letterStatus = "active";
+      else letterStatus = "passive";
     }
-    if (typedWord.charAt(i) != "") {
-      if (typedWord.charAt(i) === char) letterStatus = "correct";
-      else letterStatus = "incorrect";
-    }
+    if (typedWord.charAt(i) === char) letterStatus = "correct";
+    else if (typedWord.charAt(i) != "") letterStatus = "incorrect";
 
     return <Letter char={char} status={letterStatus} key={i} />;
   });
 
   const suffix =
-    typedWord.length > word.length ? typedWord.slice(word.length - 1, -1) : "";
+    typedWord.length > word.length ? typedWord.slice(word.length) : "";
 
   return (
     <div className={`${styles.word} ${styles[status]}`} ref={ref}>
       {componentList}
       {suffix.split("").map((char, i) => (
-        <Letter char={char} status="incorrect" key={i} />
+        <Letter char={char} status="incorrect" key={`s${i}`} />
       ))}
     </div>
   );
