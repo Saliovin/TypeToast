@@ -1,11 +1,11 @@
-import { Ref, useState } from "react";
+import { RefCallback } from "react";
 import styles from "../styles/Word.module.css";
 import Letter from "./Letter";
 
 type Props = {
   word: string;
   typedWord: string;
-  wordRef: Ref<HTMLDivElement>;
+  wordRef: RefCallback<HTMLDivElement>;
   activeLetterIndex: number;
   status: string;
 };
@@ -17,12 +17,10 @@ const Word = ({
   activeLetterIndex,
   status,
 }: Props) => {
-  let ref = null;
   const componentList = word.split("").map((char, i) => {
     let letterStatus = "waiting";
 
     if (status === "active") {
-      ref = wordRef;
       if (activeLetterIndex === i) letterStatus = "active";
       else letterStatus = "passive";
     }
@@ -36,7 +34,10 @@ const Word = ({
     typedWord.length > word.length ? typedWord.slice(word.length) : "";
 
   return (
-    <div className={`${styles.word} ${styles[status]}`} ref={ref}>
+    <div
+      className={`${styles.word} ${styles[status]}`}
+      ref={status === "active" ? wordRef : null}
+    >
       {componentList}
       {suffix.split("").map((char, i) => (
         <Letter char={char} status="incorrect" key={`s${i}`} />

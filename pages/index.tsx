@@ -1,6 +1,15 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  DOMElement,
+  ReactNode,
+  RefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import Caret from "../components/Caret";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import WordSet from "../components/WordSet";
@@ -48,7 +57,15 @@ const Home: NextPage = () => {
   const [typedWordList, setTypedWordList] = useState("");
   const [activeWordIndex, setActiveWordIndex] = useState(0);
   const [activeLetterIndex, setActiveLetterIndex] = useState(0);
-  const activeWord = useRef<HTMLDivElement>(null);
+  const [wordRect, setWordRect] = useState({ top: 0, left: 0 });
+  const wordRef = useCallback((node: HTMLDivElement) => {
+    if (node === null) return;
+    node.scrollIntoView({
+      block: "center",
+    });
+    const rect = node.getBoundingClientRect();
+    setWordRect({ top: rect?.top || 0, left: rect?.left || 0 });
+  }, []);
   const main = useRef<HTMLDivElement>(null);
 
   const handleKeyPress = ({ key }: React.KeyboardEvent) => {
@@ -60,13 +77,6 @@ const Home: NextPage = () => {
     setTypedWordList(typedWordList + key);
   };
 
-  useEffect(() => {
-    if (activeWord.current !== null)
-      activeWord.current.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-  }, [activeWordIndex]);
   useEffect(() => {
     const typedWordListArray = typedWordList.split(" ");
 
@@ -92,12 +102,17 @@ const Home: NextPage = () => {
       </Head>
 
       <Header />
+      <Caret
+        top={wordRect.top}
+        left={wordRect.left}
+        offset={18.37 * activeLetterIndex}
+      />
       <WordSet
         wordList={testList}
         typedWordList={typedWordList.split(" ")}
         activeLetterIndex={activeLetterIndex}
         activeWordIndex={activeWordIndex}
-        wordRef={activeWord}
+        wordRef={wordRef}
       />
       <Footer />
     </div>

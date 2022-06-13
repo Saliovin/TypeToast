@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef } from "react";
+import { RefCallback } from "react";
 import styles from "../styles/WordSet.module.css";
 import Word from "./Word";
 
@@ -7,7 +7,7 @@ type Props = {
   typedWordList: string[];
   activeLetterIndex: number;
   activeWordIndex: number;
-  wordRef: RefObject<HTMLDivElement>;
+  wordRef: RefCallback<HTMLDivElement>;
 };
 
 const WordSet = ({
