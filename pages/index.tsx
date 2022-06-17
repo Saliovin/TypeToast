@@ -102,11 +102,14 @@ const Home: NextPage = () => {
       </Head>
 
       <Header />
-      <Caret
-        top={wordRect.top}
-        left={wordRect.left}
-        offset={18.37 * activeLetterIndex}
-      />
+      {wordRect.top != 0 && (
+        <Caret
+          top={wordRect.top}
+          left={wordRect.left}
+          offset={18.37 * activeLetterIndex}
+        />
+      )}
+
       <WordSet
         wordList={testList}
         typedWordList={typedWordList.split(" ")}
