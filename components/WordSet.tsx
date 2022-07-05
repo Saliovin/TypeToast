@@ -5,7 +5,6 @@ import Word from "./Word";
 type Props = {
   wordList: string[];
   typedWordList: string[];
-  activeLetterIndex: number;
   activeWordIndex: number;
   wordRef: RefCallback<HTMLDivElement>;
 };
@@ -13,7 +12,6 @@ type Props = {
 const WordSet = ({
   wordList,
   typedWordList,
-  activeLetterIndex,
   activeWordIndex,
   wordRef,
 }: Props) => {
@@ -30,7 +28,6 @@ const WordSet = ({
       <Word
         word={word}
         typedWord={typedWordList[i]}
-        activeLetterIndex={activeLetterIndex}
         wordRef={wordRef}
         status={wordStatus}
         key={i}

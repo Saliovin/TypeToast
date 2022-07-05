@@ -1,3 +1,4 @@
+import React from "react";
 import { RefCallback } from "react";
 import styles from "../styles/Word.module.css";
 import Letter from "./Letter";
@@ -6,23 +7,15 @@ type Props = {
   word: string;
   typedWord: string;
   wordRef: RefCallback<HTMLDivElement>;
-  activeLetterIndex: number;
   status: string;
 };
 
-const Word = ({
-  word,
-  typedWord = "",
-  wordRef,
-  activeLetterIndex,
-  status,
-}: Props) => {
+const Word = ({ word, typedWord = "", wordRef, status }: Props) => {
   const componentList = word.split("").map((char, i) => {
     let letterStatus = "waiting";
 
     if (status === "active") {
-      if (activeLetterIndex === i) letterStatus = "active";
-      else letterStatus = "passive";
+      letterStatus = "active";
     }
     if (typedWord.charAt(i) === char) letterStatus = "correct";
     else if (typedWord.charAt(i) != "") letterStatus = "incorrect";
@@ -46,4 +39,4 @@ const Word = ({
   );
 };
 
-export default Word;
+export default React.memo(Word);
