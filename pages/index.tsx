@@ -1,14 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import React, {
-  DOMElement,
-  ReactNode,
-  RefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Caret from "../components/Caret";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -23,7 +15,7 @@ const Home: NextPage = () => {
   const [typedWordList, setTypedWordList] = useState<string[]>([""]);
   const [activeWordIndex, setActiveWordIndex] = useState(0);
   const [wordRect, setWordRect] = useState({ top: 0, left: 0 });
-  const [testStart, setTestStart] = useState(0);
+  const [testStatus, setTestStatus] = useState(0); //-1: Test end, 0: Test waiting, 1: Test running
   const [wordSet, setWordSet] = useState<string[]>([]);
   const [result, setResult] = useState({
     wpm: 0,
@@ -38,7 +30,7 @@ const Home: NextPage = () => {
     let incorrectChars = 0;
     let extraChars = 0;
     let missedChars = 0;
-    setTestStart(-1);
+    setTestStatus(-1);
     typedWordList.forEach((typedWord, i) => {
       typedWord.split("").forEach((typedChar, j) => {
         if (wordSet[i].charAt(j) === typedChar) correctChars++;
@@ -72,6 +64,7 @@ const Home: NextPage = () => {
     setWordRect({ top: rect?.top || 0, left: rect?.left || 0 });
   }, []);
   const main = useRef<HTMLDivElement>(null);
+
   const handleKeyPress = (event: React.KeyboardEvent) => {
     if (
       (event.key.length !== 1 && event.key !== "Backspace") ||
@@ -80,9 +73,9 @@ const Home: NextPage = () => {
       event.ctrlKey
     )
       return;
-    if (testStart == 0) {
+    if (testStatus == 0) {
       startTimer(15);
-      setTestStart(1);
+      setTestStatus(1);
     }
     let typed = typedWordList.join(" ");
 
@@ -90,12 +83,11 @@ const Home: NextPage = () => {
     else typed += event.key;
     setTypedWordList(typed.split(" "));
   };
-
   const reset = () => {
     setTypedWordList([""]);
     setActiveWordIndex(0);
     setWordRect({ top: 0, left: 0 });
-    setTestStart(0);
+    setTestStatus(0);
     main.current?.focus();
   };
   const newSet = () => {
@@ -129,7 +121,7 @@ const Home: NextPage = () => {
         tabIndex={0}
         className={styles.test}
       >
-        {testStart == -1 && (
+        {testStatus == -1 && (
           <Result
             wpm={result.wpm}
             accuracy={result.accuracy}
@@ -142,7 +134,7 @@ const Home: NextPage = () => {
           />
         )}
 
-        {testStart != -1 && (
+        {testStatus != -1 && (
           <div>
             <Timer timeLeft={timeLeft} />
             <Caret
