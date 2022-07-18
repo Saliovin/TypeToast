@@ -12,6 +12,7 @@ import React, {
 import Caret from "../components/Caret";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Result from "../components/Result";
 import Timer from "../components/Timer";
 import WordSet from "../components/WordSet";
 import useTimer from "../hooks/useTimer";
@@ -22,19 +23,44 @@ const Home: NextPage = () => {
   const [typedWordList, setTypedWordList] = useState<string[]>([""]);
   const [activeWordIndex, setActiveWordIndex] = useState(0);
   const [wordRect, setWordRect] = useState({ top: 0, left: 0 });
-  const [testStart, setTestStart] = useState(false);
+  const [testStart, setTestStart] = useState(0);
   const [wordSet, setWordSet] = useState<string[]>([]);
+  const [result, setResult] = useState({
+    wpm: 0,
+    accuracy: 0,
+    correctChars: 0,
+    incorrectChars: 0,
+    extraChars: 0,
+    missedChars: 0,
+  });
   const [timeLeft, startTimer] = useTimer(() => {
-    let correctCharNum = 0;
-    setTestStart(false);
+    let correctChars = 0;
+    let incorrectChars = 0;
+    let extraChars = 0;
+    let missedChars = 0;
+    setTestStart(-1);
     typedWordList.forEach((typedWord, i) => {
       typedWord.split("").forEach((typedChar, j) => {
-        if (wordSet[i].charAt(j) === typedChar) correctCharNum++;
+        if (wordSet[i].charAt(j) === typedChar) correctChars++;
+        else if (wordSet[i].charAt(j) === "") extraChars++;
+        else incorrectChars++;
       });
+      if (typedWord.length < wordSet[i].length && typedWordList.length != i + 1)
+        missedChars += wordSet[i].length - typedWord.length;
     });
-    correctCharNum += typedWordList.length - 1;
-    const GWPM = typedWordList.length / 5 / 0.25;
-    const NWPM = correctCharNum / 5 / 0.25;
+    correctChars += typedWordList.length - 1;
+    const wpm = Math.floor(correctChars / 5 / 0.25);
+    const accuracy = Math.floor(
+      (correctChars / typedWordList.join(" ").length) * 100
+    );
+    setResult({
+      wpm,
+      accuracy,
+      correctChars,
+      incorrectChars,
+      extraChars,
+      missedChars,
+    });
   });
   const wordRef = useCallback((node: HTMLDivElement) => {
     if (node === null) return;
@@ -54,15 +80,27 @@ const Home: NextPage = () => {
       event.ctrlKey
     )
       return;
-    if (!testStart) {
+    if (testStart == 0) {
       startTimer(15);
-      setTestStart(true);
+      setTestStart(1);
     }
     let typed = typedWordList.join(" ");
 
     if (event.key === "Backspace") typed = typed.slice(0, -1);
     else typed += event.key;
     setTypedWordList(typed.split(" "));
+  };
+
+  const reset = () => {
+    setTypedWordList([""]);
+    setActiveWordIndex(0);
+    setWordRect({ top: 0, left: 0 });
+    setTestStart(0);
+    main.current?.focus();
+  };
+  const newSet = () => {
+    setWordSet(wordList.sort(() => Math.random() - 0.5));
+    reset();
   };
 
   useEffect(() => {
@@ -91,21 +129,35 @@ const Home: NextPage = () => {
         tabIndex={0}
         className={styles.test}
       >
-        <Timer timeLeft={timeLeft} />
-
-        {wordRect.top != 0 && (
-          <Caret
-            top={wordRect.top}
-            left={wordRect.left}
-            offset={18.37 * typedWordList[activeWordIndex]?.length || 0}
+        {testStart == -1 && (
+          <Result
+            wpm={result.wpm}
+            accuracy={result.accuracy}
+            correctChars={result.correctChars}
+            incorrectChars={result.incorrectChars}
+            extraChars={result.extraChars}
+            missedChars={result.missedChars}
+            handleNewSet={newSet}
+            handleRetrySet={reset}
           />
         )}
-        <WordSet
-          wordList={wordSet.slice(0, activeWordIndex + 50)}
-          typedWordList={typedWordList}
-          activeWordIndex={activeWordIndex}
-          wordRef={wordRef}
-        />
+
+        {testStart != -1 && (
+          <div>
+            <Timer timeLeft={timeLeft} />
+            <Caret
+              top={wordRect.top}
+              left={wordRect.left}
+              offset={18.37 * typedWordList[activeWordIndex]?.length || 0}
+            />
+            <WordSet
+              wordList={wordSet.slice(0, activeWordIndex + 50)}
+              typedWordList={typedWordList}
+              activeWordIndex={activeWordIndex}
+              wordRef={wordRef}
+            />
+          </div>
+        )}
       </div>
       <Footer />
     </div>

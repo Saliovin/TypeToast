@@ -1,0 +1,36 @@
+.result {
+  display: flex;
+  flex-direction: column;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 4rem;
+}
+
+.mainStats {
+}
+
+.charStats {
+  font-size: 0.8rem;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0 1rem;
+}
+.charStats p {
+  font-size: 1rem;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  align-self: end;
+  margin: 0;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+.buttons button {
+  margin: 1rem;
+  width: 8rem;
+}
