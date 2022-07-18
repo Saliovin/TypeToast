@@ -4,17 +4,17 @@
 }
 
 .waiting {
-  color: #059669;
+  color: var(--secondary-color);
 }
 
 .active {
-  color: #a7f3d0;
+  color: var(--primary-color);
 }
 
 .correct {
-  color: #a5b4fc;
+  color: var(--tertiary-color);
 }
 
 .incorrect {
-  color: #f43f5e;
+  color: var(--invalid-color);
 }

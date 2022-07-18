@@ -1,3 +1,12 @@
+html {
+  --background-color: #0f172a;
+  --primary-color: #a7f3d0;
+  --secondary-color: #059669;
+  --tertiary-color: #a5b4fc;
+  --invalid-color: #f43f5e;
+  --caret-color: #ff69f2;
+}
+
 html,
 body {
   padding: 0;
@@ -16,8 +25,8 @@ a {
 }
 
 body {
-  background-color: #0f172a;
-  color: #a7f3d0;
+  background-color: var(--background-color);
+  color: var(--primary-color);
 }
 
 ul,
