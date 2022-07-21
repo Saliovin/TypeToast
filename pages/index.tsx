@@ -151,7 +151,7 @@ const Home: NextPage = () => {
             <Caret
               top={wordRect.top}
               left={wordRect.left}
-              offset={18.37 * typedWordList[activeWordIndex]?.length || 0}
+              offset={15.23 * typedWordList[activeWordIndex]?.length || 0}
             />
             <WordSet
               wordList={wordSet.slice(0, activeWordIndex + 50)}

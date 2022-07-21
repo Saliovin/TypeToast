@@ -10,7 +10,7 @@ const Caret = ({ top, left, offset }: Props) => {
   return (
     <div
       className={styles.caret}
-      style={{ top: top, left: left + offset + 4 }}
+      style={{ top: top, left: left + offset }}
     ></div>
   );
 };

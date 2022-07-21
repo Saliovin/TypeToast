@@ -1,6 +1,7 @@
 .word {
   display: flex;
-  padding: 0.2rem;
+  margin: 0.3rem 0.2rem;
+  border-bottom: transparent solid 0.1rem;
 }
 
 .done {
@@ -10,5 +11,4 @@
 .incorrect {
   opacity: 0.5;
   border-bottom: var(--invalid-color) solid 0.1rem;
-  margin-bottom: -0.1rem;
 }
