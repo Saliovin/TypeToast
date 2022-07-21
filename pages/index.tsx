@@ -14,6 +14,7 @@ import wordList from "../wordlist.json";
 const Home: NextPage = () => {
   const [typedWordList, setTypedWordList] = useState<string[]>([""]);
   const [activeWordIndex, setActiveWordIndex] = useState(0);
+  const [mistypeCount, setMistypeCount] = useState(0);
   const [wordRect, setWordRect] = useState({ top: 0, left: 0 });
   const [testStatus, setTestStatus] = useState(0); //-1: Test end, 0: Test waiting, 1: Test running
   const [wordSet, setWordSet] = useState<string[]>([]);
@@ -43,7 +44,7 @@ const Home: NextPage = () => {
     correctChars += typedWordList.length - 1;
     const wpm = Math.floor(correctChars / 5 / 0.25);
     const accuracy = Math.floor(
-      (correctChars / typedWordList.join(" ").length) * 100
+      (correctChars / (typedWordList.join(" ").length + mistypeCount)) * 100
     );
     setResult({
       wpm,
@@ -80,12 +81,22 @@ const Home: NextPage = () => {
     let typed = typedWordList.join(" ");
 
     if (event.key === "Backspace") typed = typed.slice(0, -1);
-    else typed += event.key;
+    else {
+      typed += event.key;
+
+      if (
+        event.key != " " &&
+        event.key !=
+          wordList[activeWordIndex].charAt(typedWordList.at(-1)?.length || 0)
+      )
+        setMistypeCount(mistypeCount + 1);
+    }
     setTypedWordList(typed.split(" "));
   };
   const reset = () => {
     setTypedWordList([""]);
     setActiveWordIndex(0);
+    setMistypeCount(0);
     setWordRect({ top: 0, left: 0 });
     setTestStatus(0);
     main.current?.focus();
