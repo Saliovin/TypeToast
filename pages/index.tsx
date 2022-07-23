@@ -12,6 +12,10 @@ import styles from "../styles/Home.module.css";
 import wordList from "../wordlist.json";
 
 const Home: NextPage = () => {
+  const [modeSettings, setModeSettings] = useState({
+    mode: "time",
+    setting: 15,
+  });
   const [typedWordList, setTypedWordList] = useState<string[]>([""]);
   const [activeWordIndex, setActiveWordIndex] = useState(0);
   const [mistypeCount, setMistypeCount] = useState(0);
@@ -42,7 +46,7 @@ const Home: NextPage = () => {
         missedChars += wordSet[i].length - typedWord.length;
     });
     correctChars += typedWordList.length - 1;
-    const wpm = Math.floor(correctChars / 5 / 0.25);
+    const wpm = Math.floor(correctChars / 5 / (modeSettings.setting / 60));
     const accuracy = Math.floor(
       (correctChars / (typedWordList.join(" ").length + mistypeCount)) * 100
     );
@@ -75,7 +79,7 @@ const Home: NextPage = () => {
     )
       return;
     if (testStatus == 0) {
-      startTimer(15);
+      startTimer(modeSettings.setting);
       setTestStatus(1);
     }
     let typed = typedWordList.join(" ");
@@ -125,7 +129,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
+      <Header modeSettings={modeSettings} handleClick={setModeSettings} />
       <div
         ref={main}
         onKeyDown={handleKeyPress}

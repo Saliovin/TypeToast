@@ -7,3 +7,7 @@
 .nav ul li {
   padding-left: 1rem;
 }
+
+.logo {
+  color: var(--caret-color);
+}

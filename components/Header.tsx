@@ -1,29 +1,18 @@
-import Link from "next/link";
 import styles from "../styles/Header.module.css";
+import ModeSettings from "./ModeSettings";
 
-const Header = () => {
+type Props = {
+  modeSettings: { mode: string; setting: number };
+  handleClick: React.Dispatch<
+    React.SetStateAction<{ mode: string; setting: number }>
+  >;
+};
+
+const Header = ({ modeSettings, handleClick }: Props) => {
   return (
     <header>
-      <h2>TypeToast</h2>
-      <nav className={styles.nav}>
-        <ul>
-          <li>
-            <Link href="/">
-              <a>Home</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/">
-              <a>Leaderboard</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/">
-              <a>About</a>
-            </Link>
-          </li>
-        </ul>
-      </nav>
+      <h2 className={styles.logo}>TypeToast</h2>
+      <ModeSettings modeSettings={modeSettings} handleClick={handleClick} />
     </header>
   );
 };
