@@ -30,7 +30,7 @@ const WordSet = ({
         typedWord={typedWordList[i]}
         wordRef={wordRef}
         status={wordStatus}
-        key={i}
+        key={word + i}
       />
     );
   });
