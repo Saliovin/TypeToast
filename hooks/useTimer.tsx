@@ -7,27 +7,26 @@ const useTimer = (
   intervalCallback?: Callback
 ): [number, (time: number) => void] => {
   const [time, setTime] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(-1);
+  const [timeCount, setTimeCount] = useState(-1);
   const intervalFunc = useRef(() => {
     return;
   });
 
   const setTimer = (time: number) => {
     setTime(time);
-    setTimeLeft(time);
+    setTimeCount(0);
   };
 
   useEffect(() => {
     intervalFunc.current = () => {
-      setTimeLeft(timeLeft - 1);
+      setTimeCount(timeCount + 1);
       if (intervalCallback) intervalCallback();
     };
-    if (timeLeft === 0) {
+    if (timeCount === time && time !== 0) {
       setTime(0);
-      setTimeLeft(-1);
       if (timeoutCallback) timeoutCallback();
     }
-  }, [timeLeft, intervalCallback, timeoutCallback]);
+  }, [timeCount, intervalCallback, timeoutCallback, time]);
 
   useEffect(() => {
     if (time === 0) return;
@@ -40,7 +39,7 @@ const useTimer = (
     };
   }, [time]);
 
-  return [timeLeft, setTimer];
+  return [timeCount, setTimer];
 };
 
 export default useTimer;
