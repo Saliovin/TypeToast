@@ -30,35 +30,7 @@ const Home: NextPage = () => {
     extraChars: 0,
     missedChars: 0,
   });
-  const [timeLeft, startTimer] = useTimer(() => {
-    let correctChars = 0;
-    let incorrectChars = 0;
-    let extraChars = 0;
-    let missedChars = 0;
-    setTestStatus(-1);
-    typedWordList.forEach((typedWord, i) => {
-      typedWord.split("").forEach((typedChar, j) => {
-        if (wordSet[i].charAt(j) === typedChar) correctChars++;
-        else if (wordSet[i].charAt(j) === "") extraChars++;
-        else incorrectChars++;
-      });
-      if (typedWord.length < wordSet[i].length && typedWordList.length != i + 1)
-        missedChars += wordSet[i].length - typedWord.length;
-    });
-    correctChars += typedWordList.length - 1;
-    const wpm = Math.floor(correctChars / 5 / (modeSettings.setting / 60));
-    const accuracy = Math.floor(
-      (correctChars / (typedWordList.join(" ").length + mistypeCount)) * 100
-    );
-    setResult({
-      wpm,
-      accuracy,
-      correctChars,
-      incorrectChars,
-      extraChars,
-      missedChars,
-    });
-  });
+  const [time, setTimer] = useTimer(() => setTestStatus(-1));
   const wordRef = useCallback((node: HTMLDivElement) => {
     if (node === null) return;
     node.scrollIntoView({
@@ -79,7 +51,8 @@ const Home: NextPage = () => {
     )
       return;
     if (testStatus == 0) {
-      startTimer(modeSettings.setting);
+      if (modeSettings.mode === "time") setTimer(modeSettings.setting);
+      else setTimer(-1);
       setTestStatus(1);
     }
     let typed = typedWordList.join(" ");
@@ -101,18 +74,59 @@ const Home: NextPage = () => {
     setTypedWordList([""]);
     setActiveWordIndex(0);
     setMistypeCount(0);
-    setWordRect({ top: 0, left: 0 });
     setTestStatus(0);
     main.current?.focus();
   };
   const newSet = () => {
-    setWordSet(wordList.sort(() => Math.random() - 0.5));
+    setWordSet(
+      wordList
+        .sort(() => Math.random() - 0.5)
+        .slice(
+          0,
+          modeSettings.mode === "words" ? modeSettings.setting : undefined
+        )
+    );
     reset();
   };
 
   useEffect(() => {
-    setActiveWordIndex(typedWordList.length - 1);
-  }, [typedWordList]);
+    if (typedWordList.length > wordSet.length) setTestStatus(-1);
+    else setActiveWordIndex(typedWordList.length - 1);
+  }, [typedWordList, wordSet]);
+  useEffect(() => newSet(), [modeSettings]);
+  useEffect(() => {
+    if (testStatus !== -1) return;
+    let correctChars = 0;
+    let incorrectChars = 0;
+    let extraChars = 0;
+    let missedChars = 0;
+    typedWordList.forEach((typedWord, i) => {
+      typedWord.split("").forEach((typedChar, j) => {
+        if (wordSet[i].charAt(j) === typedChar) correctChars++;
+        else if (wordSet[i].charAt(j) === "") extraChars++;
+        else incorrectChars++;
+      });
+      if (
+        typedWord.length < wordSet[i]?.length &&
+        typedWordList.length != i + 1
+      )
+        missedChars += wordSet[i].length - typedWord.length;
+    });
+    correctChars += typedWordList.length - 1;
+    const wpm = Math.floor(correctChars / 5 / (time / 60));
+    const accuracy = Math.floor(
+      (correctChars / (typedWordList.join(" ").length + mistypeCount)) * 100
+    );
+    setResult({
+      wpm,
+      accuracy,
+      correctChars,
+      incorrectChars,
+      extraChars,
+      missedChars,
+    });
+    setTimer(0);
+  }, [testStatus]);
   useEffect(() => {
     main.current?.focus();
     setWordSet(wordList.sort(() => Math.random() - 0.5));
@@ -151,7 +165,7 @@ const Home: NextPage = () => {
 
         {testStatus != -1 && (
           <div>
-            <Timer timeLeft={timeLeft} />
+            <Timer timeLeft={time} />
             <Caret
               top={wordRect.top}
               left={wordRect.left}
