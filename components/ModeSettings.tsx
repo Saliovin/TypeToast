@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styles from "../styles/ModeSettings.module.css";
 
 type Props = {
@@ -8,6 +9,7 @@ type Props = {
 };
 
 const ModeSettings = ({ modeSettings, handleClick }: Props) => {
+  const [prevMode, setPrevMode] = useState({ mode: "words", setting: 10 });
   const modes = {
     time: [15, 30, 60, 120],
     words: [10, 20, 40, 80],
@@ -20,12 +22,12 @@ const ModeSettings = ({ modeSettings, handleClick }: Props) => {
           <li key={mode}>
             <button
               className={modeSettings.mode === mode ? styles.active : ""}
-              onClick={() =>
-                handleClick({
-                  mode,
-                  setting: modes[mode as keyof typeof modes][0],
-                })
-              }
+              onClick={() => {
+                if (modeSettings.mode !== mode) {
+                  handleClick(prevMode);
+                  setPrevMode(modeSettings);
+                }
+              }}
             >
               {mode}
             </button>
