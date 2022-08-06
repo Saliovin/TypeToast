@@ -7,14 +7,16 @@ import Header from "../components/Header";
 import Result from "../components/Result";
 import Timer from "../components/Timer";
 import WordSet from "../components/WordSet";
+import useLocalStorage from "../hooks/useLocalStorage";
 import useTimer from "../hooks/useTimer";
 import styles from "../styles/Home.module.css";
 import wordList from "../wordlist.json";
 
 const Home: NextPage = () => {
-  const [modeSettings, setModeSettings] = useState({
+  const [modeSettings, setModeSettings] = useLocalStorage("modeSettings", {
     mode: "time",
-    setting: 15,
+    time: 15,
+    words: 10,
   });
   const [typedWordList, setTypedWordList] = useState<string[]>([""]);
   const [activeWordIndex, setActiveWordIndex] = useState(0);
@@ -51,7 +53,7 @@ const Home: NextPage = () => {
     )
       return;
     if (testStatus == 0) {
-      if (modeSettings.mode === "time") setTimer(modeSettings.setting);
+      if (modeSettings.mode === "time") setTimer(modeSettings.time);
       else setTimer(-1);
       setTestStatus(1);
     }
@@ -83,7 +85,7 @@ const Home: NextPage = () => {
         .sort(() => Math.random() - 0.5)
         .slice(
           0,
-          modeSettings.mode === "words" ? modeSettings.setting : undefined
+          modeSettings.mode === "words" ? modeSettings.words : undefined
         )
     );
     reset();
@@ -93,7 +95,9 @@ const Home: NextPage = () => {
     if (typedWordList.length > wordSet.length) setTestStatus(-1);
     else setActiveWordIndex(typedWordList.length - 1);
   }, [typedWordList, wordSet]);
-  useEffect(() => newSet(), [modeSettings]);
+  useEffect(() => {
+    newSet();
+  }, [modeSettings]);
   useEffect(() => {
     if (testStatus !== -1) return;
     let correctChars = 0;
@@ -127,10 +131,6 @@ const Home: NextPage = () => {
     });
     setTimer(0);
   }, [testStatus]);
-  useEffect(() => {
-    main.current?.focus();
-    setWordSet(wordList.sort(() => Math.random() - 0.5));
-  }, []);
 
   return (
     <div className={styles.container}>

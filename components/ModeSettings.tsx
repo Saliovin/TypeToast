@@ -1,15 +1,11 @@
-import { useState } from "react";
 import styles from "../styles/ModeSettings.module.css";
 
 type Props = {
-  modeSettings: { mode: string; setting: number };
-  handleClick: React.Dispatch<
-    React.SetStateAction<{ mode: string; setting: number }>
-  >;
+  modeSettings: { mode: string; time: number; words: number };
+  handleClick: (value: { mode: string; time: number; words: number }) => void;
 };
 
 const ModeSettings = ({ modeSettings, handleClick }: Props) => {
-  const [prevMode, setPrevMode] = useState({ mode: "words", setting: 10 });
   const modes = {
     time: [15, 30, 60, 120],
     words: [10, 20, 40, 80],
@@ -22,12 +18,7 @@ const ModeSettings = ({ modeSettings, handleClick }: Props) => {
           <li key={mode}>
             <button
               className={modeSettings.mode === mode ? styles.active : ""}
-              onClick={() => {
-                if (modeSettings.mode !== mode) {
-                  handleClick(prevMode);
-                  setPrevMode(modeSettings);
-                }
-              }}
+              onClick={() => handleClick({ ...modeSettings, mode })}
             >
               {mode}
             </button>
@@ -38,8 +29,15 @@ const ModeSettings = ({ modeSettings, handleClick }: Props) => {
         {modes[modeSettings.mode as keyof typeof modes].map((setting) => (
           <li key={setting}>
             <button
-              className={modeSettings.setting === setting ? styles.active : ""}
-              onClick={() => handleClick({ ...modeSettings, setting })}
+              className={
+                modeSettings[modeSettings.mode as keyof typeof modeSettings] ===
+                setting
+                  ? styles.active
+                  : ""
+              }
+              onClick={() => {
+                handleClick({ ...modeSettings, [modeSettings.mode]: setting });
+              }}
             >
               {setting}
             </button>
