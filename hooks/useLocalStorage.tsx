@@ -20,9 +20,10 @@ const useLocalStorage = <T,>(
   );
 
   useEffect(() => {
-    const localValue = JSON.parse(window.localStorage.getItem(key) || "[]");
+    const localValue = window.localStorage.getItem(key);
 
-    if (localValue != []) setStoredValue(localValue);
+    if (localValue != null) setStoredValue(JSON.parse(localValue));
+    else setValue(defaultValue);
   }, []);
   return [storedValue, setValue];
 };
