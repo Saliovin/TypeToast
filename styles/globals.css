@@ -1,10 +1,10 @@
 html {
-  --background-color: #0f172a;
-  --primary-color: #a7f3d0;
-  --secondary-color: #059669;
-  --tertiary-color: #a5b4fc;
-  --invalid-color: #f43f5e;
-  --caret-color: #ff69f2;
+  --background-color: #f1f5f9;
+  --primary-color: #0f172a;
+  --secondary-color: #64748b;
+  --tertiary-color: #4338ca;
+  --invalid-color: #db2777;
+  --caret-color: #ef4444;
 }
 
 html,
