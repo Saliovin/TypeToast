@@ -3,7 +3,7 @@
   width: 0.15rem;
   height: 1.1rem;
   border-radius: 0.05rem;
-  background-color: var(--caret-color);
+  background-color: var(--strong-color);
   transition: left 0.2s;
   animation-name: blink;
   animation-duration: 0.5s;

@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   font-size: 0.6rem;
-  color: var(--secondary-color);
+  color: var(--passive-color);
 }
 
 .modeSettings ul {
@@ -15,9 +15,9 @@
 
 .modeSettings button:hover {
   cursor: pointer;
-  color: var(--tertiary-color);
+  color: var(--positive-color);
 }
 
 .active {
-  color: var(--primary-color);
+  color: var(--active-color);
 }

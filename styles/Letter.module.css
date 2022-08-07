@@ -4,17 +4,17 @@
 }
 
 .waiting {
-  color: var(--secondary-color);
+  color: var(--passive-color);
 }
 
 .active {
-  color: var(--primary-color);
+  color: var(--active-color);
 }
 
 .correct {
-  color: var(--tertiary-color);
+  color: var(--positive-color);
 }
 
 .incorrect {
-  color: var(--invalid-color);
+  color: var(--negative-color);
 }

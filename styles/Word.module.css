@@ -10,5 +10,5 @@
 
 .incorrect {
   opacity: 0.5;
-  border-bottom: var(--invalid-color) solid 0.1rem;
+  border-bottom: var(--negative-color) solid 0.1rem;
 }

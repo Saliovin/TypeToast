@@ -1,10 +1,10 @@
 html {
-  --background-color: #f1f5f9;
-  --primary-color: #0f172a;
-  --secondary-color: #64748b;
-  --tertiary-color: #4338ca;
-  --invalid-color: #db2777;
-  --caret-color: #ef4444;
+  --background-color: #f8fafc;
+  --active-color: #0f172a;
+  --passive-color: #64748b;
+  --positive-color: #4338ca;
+  --negative-color: #a21caf;
+  --strong-color: #ef4444;
 }
 
 html,
@@ -19,6 +19,9 @@ a {
   color: inherit;
   text-decoration: none;
 }
+a:hover {
+  color: var(--positive-color);
+}
 
 * {
   box-sizing: border-box;
@@ -26,7 +29,7 @@ a {
 
 body {
   background-color: var(--background-color);
-  color: var(--primary-color);
+  color: var(--active-color);
 }
 
 ul,
