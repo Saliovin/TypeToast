@@ -1,5 +1,8 @@
-## TypeToast
-![image](https://user-images.githubusercontent.com/42230022/183292276-e94ce1c1-d719-4d9c-9ced-e433b6d4e126.png)
+<h1 align="center">TypeToast</h1>
+<p align="center">
+<img src="https://user-images.githubusercontent.com/42230022/183292276-e94ce1c1-d719-4d9c-9ced-e433b6d4e126.png" width="700"/>
+</p>
+
 ## Getting Started
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
