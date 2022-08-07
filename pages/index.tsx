@@ -72,6 +72,7 @@ const Home: NextPage = () => {
     setActiveWordIndex(0);
     setMistypeCount(0);
     setTestStatus(0);
+    setTimer(0);
     main.current?.focus();
   };
   const newSet = () => {
@@ -90,9 +91,7 @@ const Home: NextPage = () => {
     if (typedWordList.length > wordSet.length) setTestStatus(-1);
     else setActiveWordIndex(typedWordList.length - 1);
   }, [typedWordList, wordSet]);
-  useEffect(() => {
-    newSet();
-  }, [modeSettings]);
+  useEffect(() => newSet(), [modeSettings]);
   useEffect(() => {
     if (testStatus !== -1) return;
     let correctChars = 0;
