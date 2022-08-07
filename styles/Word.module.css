@@ -4,6 +4,10 @@
   border-bottom: transparent solid 0.1rem;
 }
 
+.active {
+  position: relative;
+}
+
 .done {
   opacity: 0.5;
 }

@@ -1,5 +1,5 @@
 .caret {
-  position: fixed;
+  position: absolute;
   width: 0.15rem;
   height: 1.1rem;
   border-radius: 0.05rem;

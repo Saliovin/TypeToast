@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import Caret from "../components/Caret";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Result from "../components/Result";
@@ -21,7 +20,6 @@ const Home: NextPage = () => {
   const [typedWordList, setTypedWordList] = useState<string[]>([""]);
   const [activeWordIndex, setActiveWordIndex] = useState(0);
   const [mistypeCount, setMistypeCount] = useState(0);
-  const [wordRect, setWordRect] = useState({ top: 0, left: 0 });
   const [testStatus, setTestStatus] = useState(0); //-1: Test end, 0: Test waiting, 1: Test running
   const [wordSet, setWordSet] = useState<string[]>([]);
   const [result, setResult] = useState({
@@ -38,9 +36,6 @@ const Home: NextPage = () => {
     node.scrollIntoView({
       block: "center",
     });
-
-    const rect = node.getBoundingClientRect();
-    setWordRect({ top: rect?.top || 0, left: rect?.left || 0 });
   }, []);
   const main = useRef<HTMLDivElement>(null);
 
@@ -166,11 +161,6 @@ const Home: NextPage = () => {
         {testStatus != -1 && (
           <div>
             <Timer timeLeft={time} />
-            <Caret
-              top={wordRect.top}
-              left={wordRect.left}
-              offset={15.23 * typedWordList[activeWordIndex]?.length || 0}
-            />
             <WordSet
               wordList={wordSet.slice(0, activeWordIndex + 50)}
               typedWordList={typedWordList}
