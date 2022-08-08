@@ -5,6 +5,8 @@
   margin: 0 auto;
   padding: 0 1rem;
   width: 70vw;
+  max-width: 1020px;
+  min-width: 810px;
   height: 100vh;
 }
 
