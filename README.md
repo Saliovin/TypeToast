@@ -1,6 +1,6 @@
 <h1 align="center">TypeToast</h1>
 <p align="center">
-<img src="https://user-images.githubusercontent.com/42230022/183292276-e94ce1c1-d719-4d9c-9ced-e433b6d4e126.png" width="700"/>
+<img src="https://user-images.githubusercontent.com/42230022/183403578-292ea93e-4dde-4288-9042-4bcb1b267bf8.png" width="700"/>
 </p>
 <p align="center">
 TypeToast is a minimal typing test designed to be simple, subtle, and straightforward. Start typing in limited time or words mode and get your typing results in a snap.
