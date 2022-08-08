@@ -13,8 +13,8 @@ TypeToast is a minimal typing test designed to be simple, subtle, and straightfo
 ## Planned Features
 - Themes
 - Modes
-  - quotes
-  - infinity
+  - Quotes
+  - Infinity
   - Daily challenge
 - Progress Tracking(Accounts)
 - Leaderboards
