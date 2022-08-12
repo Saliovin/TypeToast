@@ -6,11 +6,8 @@
 TypeToast is a minimal typing test designed to be simple, subtle, and straightforward. Start typing in limited time or words mode and get your typing results in a snap.
 </p>
 
-## Features
-- Clean and simple design
-- 2 test modes(More to come)
-
 ## Planned Features
+
 - Themes
 - Modes
   - Quotes
