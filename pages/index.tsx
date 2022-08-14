@@ -135,6 +135,7 @@ const Home: NextPage = () => {
           content="A typing test that pops out results like a toast!"
         />
         <link rel="icon" href="/favicon.ico" />
+        <meta name="google-site-verification" content="XCTjZzY_AZ8tEPP-AqJQ_RBQhjGmmGqf0W-nAeZ3r0Y" />
       </Head>
 
       <Header modeSettings={modeSettings} handleClick={setModeSettings} />
