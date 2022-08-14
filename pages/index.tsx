@@ -129,13 +129,16 @@ const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>TypeToast</title>
+        <title>TypeToast - A Minimalist Typing Test to Get Your WPM</title>
         <meta
           name="description"
-          content="A typing test that pops out results like a toast!"
+          content="Simple, subtle, straightforward. TypeToast is a typing test that gives you your typing speed as easily as making toast!"
         />
         <link rel="icon" href="/favicon.ico" />
-        <meta name="google-site-verification" content="XCTjZzY_AZ8tEPP-AqJQ_RBQhjGmmGqf0W-nAeZ3r0Y" />
+        <meta
+          name="google-site-verification"
+          content="XCTjZzY_AZ8tEPP-AqJQ_RBQhjGmmGqf0W-nAeZ3r0Y"
+        />
       </Head>
 
       <Header modeSettings={modeSettings} handleClick={setModeSettings} />
@@ -159,7 +162,7 @@ const Home: NextPage = () => {
         )}
 
         {testStatus != -1 && (
-          <div>
+          <div title="typing test">
             <Timer timeLeft={time} />
             <WordSet
               wordList={wordSet.slice(0, activeWordIndex + 50)}

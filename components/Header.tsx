@@ -9,7 +9,9 @@ type Props = {
 const Header = ({ modeSettings, handleClick }: Props) => {
   return (
     <header>
-      <h2 className={styles.logo}>TypeToast</h2>
+      <h1 className={styles.logo} title="typetoast">
+        TypeToast
+      </h1>
       <ModeSettings modeSettings={modeSettings} handleClick={handleClick} />
     </header>
   );

@@ -27,7 +27,7 @@ const Result = ({
     <div className={styles.result}>
       <div className={styles.stats}>
         <div className={styles.mainStats}>
-          <h2>WPM: {wpm}</h2>
+          <h2 title="wpm">WPM: {wpm}</h2>
           <h2>Accuracy: {accuracy}%</h2>
         </div>
         <div className={styles.charStats}>
