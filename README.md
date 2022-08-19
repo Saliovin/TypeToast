@@ -15,6 +15,7 @@ TypeToast is a minimal typing test designed to be simple, subtle, and straightfo
   - Daily challenge
 - Progress Tracking(Accounts)
 - Leaderboards
+- Mobile compatibility
 - Maybe you have some ideas? :)
 
 ## Getting Started
