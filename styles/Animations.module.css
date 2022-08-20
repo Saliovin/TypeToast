@@ -49,49 +49,49 @@
 
 .slideUp {
   animation-name: slide-up;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   animation-fill-mode: forwards;
 }
 .slideOutUp {
   animation-name: slide-up;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   animation-fill-mode: backwards;
 }
 .slideDown {
   animation-name: slide-down;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   animation-fill-mode: forwards;
 }
 .slideOutDown {
   animation-name: slide-down;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   animation-fill-mode: backwards;
 }
 .slideRight {
   animation-name: slide-right;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   animation-fill-mode: forwards;
 }
 .slideOutRight {
   animation-name: slide-right;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   animation-fill-mode: backwards;
 }
 .slideLeft {
   animation-name: slide-left;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   animation-fill-mode: forwards;
 }
 .slideOutLeft {
   animation-name: slide-left;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
   animation-fill-mode: backwards;
 }
