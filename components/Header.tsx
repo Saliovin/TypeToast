@@ -1,4 +1,5 @@
 import styles from "../styles/Header.module.css";
+import animations from "../styles/Animations.module.css";
 import ModeSettings from "./ModeSettings";
 
 type Props = {
@@ -8,7 +9,7 @@ type Props = {
 
 const Header = ({ modeSettings, handleClick }: Props) => {
   return (
-    <header>
+    <header className={`${animations.slideDown}`}>
       <h1 className={styles.logo} title="typetoast">
         TypeToast
       </h1>
