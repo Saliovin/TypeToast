@@ -1,0 +1,109 @@
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@keyframes slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.slideUp {
+  animation-name: slide-up;
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-fill-mode: forwards;
+}
+.slideOutUp {
+  animation-name: slide-up;
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-fill-mode: backwards;
+}
+.slideDown {
+  animation-name: slide-down;
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-fill-mode: forwards;
+}
+.slideOutDown {
+  animation-name: slide-down;
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-fill-mode: backwards;
+}
+.slideRight {
+  animation-name: slide-right;
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-fill-mode: forwards;
+}
+.slideOutRight {
+  animation-name: slide-right;
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-fill-mode: backwards;
+}
+.slideLeft {
+  animation-name: slide-left;
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-fill-mode: forwards;
+}
+.slideOutLeft {
+  animation-name: slide-left;
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-fill-mode: backwards;
+}
+.fadeIn {
+  animation-name: fade-in;
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-fill-mode: forwards;
+}
+.fadeOut {
+  animation-name: fade-in;
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-fill-mode: backwards;
+}

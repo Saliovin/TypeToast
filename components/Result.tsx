@@ -1,5 +1,6 @@
 import { MouseEventHandler } from "react";
 import styles from "../styles/Result.module.css";
+import animations from "../styles/Animations.module.css";
 import Button from "./Button";
 
 type Props = {
@@ -26,11 +27,11 @@ const Result = ({
   return (
     <div className={styles.result}>
       <div className={styles.stats}>
-        <div className={styles.mainStats}>
+        <div className={`${styles.mainStats} ${animations.slideRight}`}>
           <h2 title="wpm">WPM: {wpm}</h2>
           <h2>Accuracy: {accuracy}%</h2>
         </div>
-        <div className={styles.charStats}>
+        <div className={`${styles.charStats} ${animations.slideLeft}`}>
           <p>Characters:</p>
           <div>{correctChars} correct</div>
           <div>{incorrectChars} incorrect</div>
@@ -38,7 +39,7 @@ const Result = ({
           <div>{missedChars} missed</div>
         </div>
       </div>
-      <div className={styles.buttons}>
+      <div className={`${styles.buttons} ${animations.slideUp}`}>
         <Button text="New Set" handleClick={handleNewSet} />
         <Button text="Retry Set" handleClick={handleRetrySet} />
       </div>
