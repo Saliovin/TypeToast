@@ -184,6 +184,7 @@ const Home: NextPage = () => {
               ref={main}
               onKeyDown={handleKeyPress}
               autoFocus
+              autoCapitalize="off"
             ></input>
             <Timer timeLeft={time} />
             <WordSet
