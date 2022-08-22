@@ -159,7 +159,11 @@ const Home: NextPage = () => {
       </Head>
 
       <Header modeSettings={modeSettings} handleClick={setModeSettings} />
-      <div className={styles.test}>
+      <div
+        className={styles.test}
+        onFocus={() => main.current?.focus()}
+        tabIndex={1}
+      >
         {testStatus == -1 && (
           <Result
             wpm={result.wpm}
@@ -179,6 +183,7 @@ const Home: NextPage = () => {
               className={styles.input}
               ref={main}
               onKeyDown={handleKeyPress}
+              autoFocus
             ></input>
             <Timer timeLeft={time} />
             <WordSet
