@@ -24,3 +24,9 @@
 .word {
   padding: 0 1rem;
 }
+
+.input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}

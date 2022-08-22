@@ -37,7 +37,7 @@ const Home: NextPage = () => {
       block: "center",
     });
   }, []);
-  const main = useRef<HTMLDivElement>(null);
+  const main = useRef<HTMLInputElement>(null);
 
   const handleKeyPress = (event: React.KeyboardEvent) => {
     if (
@@ -159,12 +159,7 @@ const Home: NextPage = () => {
       </Head>
 
       <Header modeSettings={modeSettings} handleClick={setModeSettings} />
-      <div
-        ref={main}
-        onKeyDown={handleKeyPress}
-        tabIndex={0}
-        className={styles.test}
-      >
+      <div className={styles.test}>
         {testStatus == -1 && (
           <Result
             wpm={result.wpm}
@@ -180,6 +175,11 @@ const Home: NextPage = () => {
 
         {testStatus != -1 && (
           <div title="typing test">
+            <input
+              className={styles.input}
+              ref={main}
+              onKeyDown={handleKeyPress}
+            ></input>
             <Timer timeLeft={time} />
             <WordSet
               wordList={wordSet.slice(0, activeWordIndex + 50)}
