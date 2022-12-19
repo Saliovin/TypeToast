@@ -40,33 +40,21 @@ const Home: NextPage = () => {
   }, []);
   const main = useRef<HTMLInputElement>(null);
 
-  const handleKeyPress = (event: React.KeyboardEvent) => {
-    setPrint(event.key);
-    if (
-      (event.key.length !== 1 && event.key !== "Backspace") ||
-      event.shiftKey ||
-      event.altKey ||
-      event.ctrlKey
-    )
-      return;
+  const handleKeyPress = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (testStatus == 0) {
       if (modeSettings.mode === "time") setTimer(modeSettings.time);
       else setTimer(-1);
       setTestStatus(1);
     }
-    let typed = typedWordList.join(" ");
+    let typed = event.target.value;
 
-    if (event.key === "Backspace") typed = typed.slice(0, -1);
-    else {
-      typed += event.key;
+    if (
+      typed.slice(-1) != " " &&
+      typed.slice(-1) !=
+        wordList[activeWordIndex].charAt(typedWordList.at(-1)?.length || 0)
+    )
+      setMistypeCount(mistypeCount + 1);
 
-      if (
-        event.key != " " &&
-        event.key !=
-          wordList[activeWordIndex].charAt(typedWordList.at(-1)?.length || 0)
-      )
-        setMistypeCount(mistypeCount + 1);
-    }
     setTypedWordList(typed.split(" "));
   };
   const reset = () => {
@@ -185,7 +173,7 @@ const Home: NextPage = () => {
             <input
               className={styles.input}
               ref={main}
-              onKeyDown={handleKeyPress}
+              onChange={handleKeyPress}
               autoFocus
               autoCapitalize="off"
             ></input>
