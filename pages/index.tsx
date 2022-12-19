@@ -45,7 +45,7 @@ const Home: NextPage = () => {
       else setTimer(-1);
       setTestStatus(1);
     }
-    let typed = event.target.value;
+    const typed = event.target.value;
 
     if (
       typed.slice(-1) != " " &&
