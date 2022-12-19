@@ -37,34 +37,23 @@ const Home: NextPage = () => {
       block: "center",
     });
   }, []);
-  const main = useRef<HTMLDivElement>(null);
+  const main = useRef<HTMLInputElement>(null);
 
-  const handleKeyPress = (event: React.KeyboardEvent) => {
-    if (
-      (event.key.length !== 1 && event.key !== "Backspace") ||
-      event.shiftKey ||
-      event.altKey ||
-      event.ctrlKey
-    )
-      return;
+  const handleKeyPress = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (testStatus == 0) {
       if (modeSettings.mode === "time") setTimer(modeSettings.time);
       else setTimer(-1);
       setTestStatus(1);
     }
-    let typed = typedWordList.join(" ");
+    const typed = event.target.value;
 
-    if (event.key === "Backspace") typed = typed.slice(0, -1);
-    else {
-      typed += event.key;
+    if (
+      typed.slice(-1) != " " &&
+      typed.slice(-1) !=
+        wordList[activeWordIndex].charAt(typedWordList.at(-1)?.length || 0)
+    )
+      setMistypeCount(mistypeCount + 1);
 
-      if (
-        event.key != " " &&
-        event.key !=
-          wordList[activeWordIndex].charAt(typedWordList.at(-1)?.length || 0)
-      )
-        setMistypeCount(mistypeCount + 1);
-    }
     setTypedWordList(typed.split(" "));
   };
   const reset = () => {
@@ -160,10 +149,9 @@ const Home: NextPage = () => {
 
       <Header modeSettings={modeSettings} handleClick={setModeSettings} />
       <div
-        ref={main}
-        onKeyDown={handleKeyPress}
-        tabIndex={0}
         className={styles.test}
+        onFocus={() => main.current?.focus()}
+        tabIndex={1}
       >
         {testStatus == -1 && (
           <Result
@@ -180,6 +168,13 @@ const Home: NextPage = () => {
 
         {testStatus != -1 && (
           <div title="typing test">
+            <input
+              className={styles.input}
+              ref={main}
+              onChange={handleKeyPress}
+              autoFocus
+              autoCapitalize="off"
+            ></input>
             <Timer timeLeft={time} />
             <WordSet
               wordList={wordSet.slice(0, activeWordIndex + 50)}
