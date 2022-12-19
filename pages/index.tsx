@@ -22,7 +22,6 @@ const Home: NextPage = () => {
   const [mistypeCount, setMistypeCount] = useState(0);
   const [testStatus, setTestStatus] = useState(0); //-1: Test end, 0: Test waiting, 1: Test running
   const [wordSet, setWordSet] = useState<string[]>([]);
-  const [print, setPrint] = useState("");
   const [result, setResult] = useState({
     wpm: 0,
     accuracy: 0,
@@ -154,7 +153,6 @@ const Home: NextPage = () => {
         onFocus={() => main.current?.focus()}
         tabIndex={1}
       >
-        <p>{print}</p>
         {testStatus == -1 && (
           <Result
             wpm={result.wpm}
