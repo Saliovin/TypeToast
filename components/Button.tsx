@@ -3,12 +3,13 @@ import styles from "../styles/Button.module.css";
 
 type Props = {
   text: string;
+  variant: string;
   handleClick: MouseEventHandler;
 };
 
-const Button = ({ text, handleClick }: Props) => {
+const Button = ({ text, variant, handleClick }: Props) => {
   return (
-    <button className={styles.button} onClick={handleClick}>
+    <button className={styles[variant]} onClick={handleClick}>
       {text}
     </button>
   );
