@@ -1,13 +1,19 @@
-.button {
-  border-style: solid;
-  border-width: 0.1rem;
-  color: var(--active-color);
-  border-color: var(--active-color);
-  padding: 0.5rem;
+.theme {
+  font-size: 0.6rem;
+  padding: 0 0.5rem;
+}
+.theme:hover {
+  color: var(--positive-color);
 }
 
-.button:hover {
-  cursor: pointer;
+.set {
+  color: var(--active-color);
+  border-color: var(--active-color);
+  border-style: solid;
+  border-width: 0.1rem;
+  padding: 0.5rem;
+}
+.set:hover {
   color: var(--positive-color);
   border-color: var(--positive-color);
 }

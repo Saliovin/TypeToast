@@ -1,18 +1,11 @@
-html {
-  --background-color: #f8fafc;
-  --active-color: #0f172a;
-  --passive-color: #64748b;
-  --positive-color: #4338ca;
-  --negative-color: #f97316;
-  --strong-color: #ef4444;
-}
-
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: "Azeret Mono", monospace;
   font-size: 24px;
+  transition: color 0.5s ease;
+  transition: background-color 0.5s ease;
 }
 
 a {
@@ -25,11 +18,6 @@ a:hover {
 
 * {
   box-sizing: border-box;
-}
-
-body {
-  background-color: var(--background-color);
-  color: var(--active-color);
 }
 
 ul,
@@ -57,6 +45,9 @@ button {
   font-weight: inherit;
   line-height: inherit;
   padding: 0;
+}
+button:hover {
+  cursor: pointer;
 }
 
 h1 {

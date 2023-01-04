@@ -40,8 +40,8 @@ const Result = ({
         </div>
       </div>
       <div className={`${styles.buttons} ${animations.slideUp}`}>
-        <Button text="New Set" handleClick={handleNewSet} />
-        <Button text="Retry Set" handleClick={handleRetrySet} />
+        <Button text="New Set" variant="set" handleClick={handleNewSet} />
+        <Button text="Retry Set" variant="set" handleClick={handleRetrySet} />
       </div>
     </div>
   );

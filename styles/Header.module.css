@@ -11,3 +11,7 @@
 .logo {
   color: var(--strong-color);
 }
+
+.settings {
+  display: flex;
+}

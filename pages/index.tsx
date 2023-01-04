@@ -9,7 +9,9 @@ import WordSet from "../components/WordSet";
 import useLocalStorage from "../hooks/useLocalStorage";
 import useTimer from "../hooks/useTimer";
 import styles from "../styles/Home.module.css";
+import themes from "../styles/Themes.module.css";
 import wordList from "../wordlist.json";
+import themeList from "../themelist.json";
 
 const Home: NextPage = () => {
   const [modeSettings, setModeSettings] = useLocalStorage("modeSettings", {
@@ -17,6 +19,7 @@ const Home: NextPage = () => {
     time: 15,
     words: 10,
   });
+  const [theme, setTheme] = useLocalStorage("theme", "slate");
   const [typedWordList, setTypedWordList] = useState<string[]>([""]);
   const [activeWordIndex, setActiveWordIndex] = useState(0);
   const [mistypeCount, setMistypeCount] = useState(0);
@@ -114,9 +117,12 @@ const Home: NextPage = () => {
     });
     setTimer(0);
   }, [testStatus]);
+  useEffect(() => {
+    document.body.className = `${themes.mainBody} ${themes[theme]}`;
+  });
 
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>TypeToast - A Minimalist Typing Test to Get Your WPM</title>
         <meta
@@ -146,46 +152,53 @@ const Home: NextPage = () => {
           content="XCTjZzY_AZ8tEPP-AqJQ_RBQhjGmmGqf0W-nAeZ3r0Y"
         />
       </Head>
-
-      <Header modeSettings={modeSettings} handleClick={setModeSettings} />
-      <div
-        className={styles.test}
-        onFocus={() => main.current?.focus()}
-        tabIndex={1}
-      >
-        {testStatus == -1 && (
-          <Result
-            wpm={result.wpm}
-            accuracy={result.accuracy}
-            correctChars={result.correctChars}
-            incorrectChars={result.incorrectChars}
-            extraChars={result.extraChars}
-            missedChars={result.missedChars}
-            handleNewSet={newSet}
-            handleRetrySet={reset}
-          />
-        )}
-
-        {testStatus != -1 && (
-          <div title="typing test">
-            <input
-              className={styles.input}
-              ref={main}
-              onChange={handleKeyPress}
-              autoFocus
-              autoCapitalize="off"
-            ></input>
-            <Timer timeLeft={time} />
-            <WordSet
-              wordList={wordSet.slice(0, activeWordIndex + 50)}
-              typedWordList={typedWordList}
-              activeWordIndex={activeWordIndex}
-              wordRef={wordRef}
+      <div className={styles.container}>
+        <Header
+          modeSettings={modeSettings}
+          theme={theme}
+          themeList={themeList}
+          handleClick={setModeSettings}
+          handleThemeClick={setTheme}
+        />
+        <div
+          className={styles.test}
+          onFocus={() => main.current?.focus()}
+          tabIndex={1}
+        >
+          {testStatus == -1 && (
+            <Result
+              wpm={result.wpm}
+              accuracy={result.accuracy}
+              correctChars={result.correctChars}
+              incorrectChars={result.incorrectChars}
+              extraChars={result.extraChars}
+              missedChars={result.missedChars}
+              handleNewSet={newSet}
+              handleRetrySet={reset}
             />
-          </div>
-        )}
+          )}
+
+          {testStatus != -1 && (
+            <div title="typing test">
+              <input
+                className={styles.input}
+                ref={main}
+                onChange={handleKeyPress}
+                autoFocus
+                autoCapitalize="off"
+              ></input>
+              <Timer timeLeft={time} />
+              <WordSet
+                wordList={wordSet.slice(0, activeWordIndex + 50)}
+                typedWordList={typedWordList}
+                activeWordIndex={activeWordIndex}
+                wordRef={wordRef}
+              />
+            </div>
+          )}
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </div>
   );
 };
