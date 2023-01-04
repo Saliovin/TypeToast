@@ -1,0 +1,28 @@
+.trigger {
+  font-size: medium;
+  outline: none;
+  color: var(--passive-color);
+  padding: 0 1rem;
+}
+.trigger[aria-expanded='true'] {
+  color: var(--active-color);
+}
+
+.content {
+  font-size: 0.6rem;
+  color: var(--passive-color);
+}
+
+.item {
+  outline: none;
+  padding: 0.1rem;
+}
+
+.arrow {
+  fill: var(--passive-color);
+}
+
+.trigger:hover, .item:hover {
+  cursor: pointer;
+  color: var(--active-color);
+}
