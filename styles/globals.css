@@ -4,6 +4,8 @@ body {
   margin: 0;
   font-family: "Azeret Mono", monospace;
   font-size: 24px;
+  transition: color 0.5s ease;
+  transition: background-color 0.5s ease;
 }
 
 a {
