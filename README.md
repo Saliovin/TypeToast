@@ -12,10 +12,10 @@ TypeToast is a minimal typing test designed to be simple, subtle, and straightfo
   - Time
   - Words
 - Mobile compatibility
+- Themes
 
 ## Planned Features
 
-- Themes
 - Modes
   - Quotes
   - Infinity
