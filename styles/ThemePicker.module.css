@@ -1,11 +1,11 @@
 .trigger {
   font-size: medium;
   outline: none;
-  color: var(--passive-color);
+  color: var(--active-color);
   padding: 0 1rem;
 }
 .trigger[aria-expanded='true'] {
-  color: var(--active-color);
+  color: var(--positive-color);
 }
 
 .content {
@@ -24,5 +24,5 @@
 
 .trigger:hover, .item:hover {
   cursor: pointer;
-  color: var(--active-color);
+  color: var(--positive-color);
 }

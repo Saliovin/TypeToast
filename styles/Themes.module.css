@@ -16,6 +16,25 @@
   --strong-color: #c7fba5;
 }
 
+
+.contrast {
+  --background-color: #fff;
+  --active-color: #222;
+  --passive-color: #555;
+  --positive-color: #007a09;
+  --negative-color: #d10000;
+  --strong-color: #000;
+}
+
+.cyberpunk {
+  --background-color: #F3E600;
+  --active-color: #000;
+  --passive-color: #554B41;
+  --positive-color: #04DAF6;
+  --negative-color: #FF003C;
+  --strong-color: #000;
+}
+
 .mainBody {
   background-color: var(--background-color);
   color: var(--active-color);
