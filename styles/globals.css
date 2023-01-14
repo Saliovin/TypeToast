@@ -3,7 +3,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Azeret Mono", monospace;
-  font-size: 24px;
+  font-size: 26px;
   transition: color 0.5s ease;
   transition: background-color 0.5s ease;
 }
