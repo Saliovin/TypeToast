@@ -32,7 +32,7 @@ const Word = ({ word, typedWord = "", wordRef, status }: Props) => {
       className={`${styles.word} ${styles[status]}`}
       ref={status === "active" ? wordRef : null}
     >
-      {status === "active" && <Caret offset={15.23 * typedWord?.length || 0} />}
+      {status === "active" && <Caret offset={16.52 * typedWord?.length || 0} />}
       {componentList}
       {suffix.split("").map((char, i) => (
         <Letter char={char} status="incorrect" key={`s${i}`} />
