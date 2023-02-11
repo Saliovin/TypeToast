@@ -65,6 +65,7 @@ const Home: NextPage = () => {
     setMistypeCount(0);
     setTestStatus(0);
     setTimer(0);
+    main.current ? (main.current.value = "") : null;
     main.current?.focus();
   };
   const newSet = () => {
