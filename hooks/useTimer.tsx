@@ -19,7 +19,7 @@ const useTimer = (
 
   useEffect(() => {
     intervalFunc.current = () => {
-      setTimeCount(timeCount + 1);
+      setTimeCount(timeCount + 0.1);
       if (intervalCallback) intervalCallback();
     };
     if (timeCount === time && time !== 0) {
@@ -32,7 +32,7 @@ const useTimer = (
     if (time === 0) return;
     const intervalId = window.setInterval(() => {
       intervalFunc.current();
-    }, 1000);
+    }, 100);
 
     return () => {
       clearInterval(intervalId);
