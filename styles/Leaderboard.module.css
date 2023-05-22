@@ -8,6 +8,7 @@
 .leaderboardButton {
   display: flex;
   align-self: center;
+  font-size: 0.6rem;
 }
 .leaderboardButton:hover {
   color: var(--positive-color);
