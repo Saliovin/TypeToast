@@ -22,7 +22,7 @@ const useTimer = (
       setTimeCount(timeCount + 0.1);
       if (intervalCallback) intervalCallback();
     };
-    if (timeCount === time && time !== 0) {
+    if (timeCount >= time && time !== 0) {
       setTime(0);
       if (timeoutCallback) timeoutCallback();
     }
