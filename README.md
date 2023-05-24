@@ -13,6 +13,7 @@ TypeToast is a minimal typing test designed to be simple, subtle, and straightfo
   - Words
 - Mobile compatibility
 - Themes
+- Leaderboards(Weekly)
 
 ## Planned Features
 
@@ -21,7 +22,7 @@ TypeToast is a minimal typing test designed to be simple, subtle, and straightfo
   - Infinity
   - Daily challenge
 - Progress Tracking(Accounts)
-- Leaderboards
+- Leaderboards(All Time, Challenge)
 - Maybe you have some ideas? :)
 
 ## Getting Started
