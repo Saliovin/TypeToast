@@ -13,16 +13,16 @@ const useTimer = (
   });
 
   const setTimer = (time: number) => {
-    setTime(time);
+    setTime(time * 10); // For avoiding floating point shenanigans
     setTimeCount(0);
   };
 
   useEffect(() => {
     intervalFunc.current = () => {
-      setTimeCount(timeCount + 0.1);
+      setTimeCount(timeCount + 1);
       if (intervalCallback) intervalCallback();
     };
-    if (timeCount >= time && time !== 0) {
+    if (timeCount == time && time !== 0) {
       setTime(0);
       if (timeoutCallback) timeoutCallback();
     }
@@ -39,7 +39,7 @@ const useTimer = (
     };
   }, [time]);
 
-  return [timeCount, setTimer];
+  return [timeCount / 10, setTimer]; // Also for avoiding floating point shenanigans
 };
 
 export default useTimer;
