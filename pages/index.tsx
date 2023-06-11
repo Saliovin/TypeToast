@@ -89,6 +89,7 @@ const Home: NextPage = () => {
           }
         );
       });
+      records.sort((a, b) => b.wpm - a.wpm);
       setRecords(records);
     });
     main.current ? (main.current.value = "") : null;

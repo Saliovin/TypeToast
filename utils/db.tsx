@@ -8,6 +8,7 @@ import {
   query,
   orderBy,
   limit,
+  where,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -71,11 +72,21 @@ const listRecords = async () => {
 
 const getWeeklyLeaderboard = async () => {
   try {
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
+    const first = currentDate.getDate() - currentDate.getDay();
+    const last = first + 6;
+    const firstDay = new Date(currentDate.setDate(first));
+    const lastDay = new Date(currentDate.setDate(last));
     const q = query(
-      collection(db, "records"),
-      orderBy("wpm", "desc"),
-      limit(20)
+      query(
+        collection(db, "records"),
+        where("timestamp", ">=", firstDay),
+        where("timestamp", "<", lastDay),
+        limit(20)
+      )
     );
+
     const querySnapshot = await getDocs(q);
     return querySnapshot;
   } catch (e) {
