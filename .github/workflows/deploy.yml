@@ -21,7 +21,7 @@ jobs:
 
       - name: "Build and Push Image"
         run: |
-          docker build -t typetoast/frontend --build-arg NEXT_BASE_API_URL=${{secrets.NEXT_BASE_API_URL}} . 
+          docker build -t typetoast/frontend --build-arg NEXT_PUBLIC_BASE_API_URL=${{secrets.NEXT_PUBLIC_BASE_API_URL}} . 
           docker tag typetoast/frontend:latest ghcr.io/saliovin/typetoast/frontend:latest
           docker push ghcr.io/saliovin/typetoast/frontend:latest
 
