@@ -13,7 +13,8 @@ import themes from "../styles/Themes.module.css";
 import wordList from "../wordlist.json";
 import themeList from "../themelist.json";
 import { Timestamp } from "firebase/firestore";
-import { addRecord, getWeeklyLeaderboard } from "../utils/db";
+import scoreService from "../services/score";
+import { Score } from "../interfaces/score";
 
 const Home: NextPage = () => {
   const [modeSettings, setModeSettings] = useLocalStorage("modeSettings", {
@@ -31,7 +32,6 @@ const Home: NextPage = () => {
     {
       name: string;
       wpm: number;
-      timestamp: Timestamp;
     }[]
   >([]);
   const [result, setResult] = useState({
@@ -74,20 +74,17 @@ const Home: NextPage = () => {
     setMistypeCount(0);
     setTestStatus(0);
     setTimer(0);
-    getWeeklyLeaderboard().then((querySnapshot) => {
+    scoreService.getWeeklyLeaderboard().then((resp) => {
+      const data = resp.data;
       const records: {
         name: string;
         wpm: number;
-        timestamp: Timestamp;
       }[] = [];
-      querySnapshot?.forEach((doc) => {
-        records.push(
-          doc.data({ serverTimestamps: "estimate" }) as {
-            name: string;
-            wpm: number;
-            timestamp: Timestamp;
-          }
-        );
+      data?.forEach((score: Score) => {
+        records.push({
+          name: score.name,
+          wpm: score.wpm,
+        });
       });
       records.sort((a, b) => b.wpm - a.wpm);
       setRecords(records);
@@ -205,7 +202,7 @@ const Home: NextPage = () => {
               missed={result.missed}
               handleNewSet={newSet}
               handleRetrySet={reset}
-              handleWPMSubmit={addRecord}
+              handleWPMSubmit={scoreService.postScore}
             />
           )}
 
@@ -216,7 +213,7 @@ const Home: NextPage = () => {
                 ref={main}
                 onChange={handleKeyPress}
                 autoFocus
-                autoCapitalize="off"
+                autoCapitalize="none"
               ></input>
               <Timer timeLeft={Math.floor(time)} />
               <WordSet

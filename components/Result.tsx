@@ -2,7 +2,8 @@ import { MouseEventHandler, useState } from "react";
 import styles from "../styles/Result.module.css";
 import animations from "../styles/Animations.module.css";
 import Button from "./Button";
-import { RecordProps } from "../utils/db";
+import { Score } from "../interfaces/score";
+import { AxiosResponse } from "axios";
 
 type Props = {
   wpm: number;
@@ -13,15 +14,7 @@ type Props = {
   missed: number;
   handleNewSet: MouseEventHandler;
   handleRetrySet: MouseEventHandler;
-  handleWPMSubmit: ({
-    name,
-    wpm,
-    accuracy,
-    correct,
-    incorrect,
-    extra,
-    missed,
-  }: RecordProps) => Promise<boolean>;
+  handleWPMSubmit: (score: Score) => Promise<AxiosResponse>;
 };
 
 const Result = ({

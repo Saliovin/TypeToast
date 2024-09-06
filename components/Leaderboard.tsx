@@ -1,12 +1,10 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { Timestamp } from "firebase/firestore";
 import styles from "../styles/Leaderboard.module.css";
 
 type Props = {
   records: {
     name: string;
     wpm: number;
-    timestamp: Timestamp;
   }[];
 };
 
@@ -34,7 +32,7 @@ const Leaderboard = ({ records }: Props) => {
             <tbody>
               {records.map((record, index) => {
                 return (
-                  <tr key={record.timestamp.toMillis()}>
+                  <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{record.name}</td>
                     <td>{record.wpm}</td>

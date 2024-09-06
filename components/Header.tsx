@@ -3,7 +3,6 @@ import animations from "../styles/Animations.module.css";
 import ModeSettings from "./ModeSettings";
 import ThemePicker from "./ThemePicker";
 import Leaderboard from "./Leaderboard";
-import { Timestamp } from "firebase/firestore";
 
 type Props = {
   modeSettings: { mode: string; time: number; words: number };
@@ -14,7 +13,6 @@ type Props = {
   records: {
     name: string;
     wpm: number;
-    timestamp: Timestamp;
   }[];
 };
 
