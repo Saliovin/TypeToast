@@ -154,6 +154,10 @@ const Home: NextPage = () => {
           name="description"
           content="Simple, subtle, straightforward. TypeToast is a typing test that gives you your typing speed as easily as making toast!"
         />
+        <meta
+          http-equiv="Content-Security-Policy"
+          content="upgrade-insecure-requests"
+        />
         <link
           rel="apple-touch-icon"
           sizes="180x180"
