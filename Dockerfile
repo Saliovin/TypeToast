@@ -1,7 +1,6 @@
 FROM node:18-alpine AS base
 
 ARG NEXT_BASE_API_URL
-ENV NEXT_BASE_API_URL=$NEXT_BASE_API_URL
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -29,6 +28,8 @@ COPY . .
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED=1
+
+ENV NEXT_BASE_API_URL=$NEXT_BASE_API_URL
 
 RUN \
   if [ -f yarn.lock ]; then yarn run build; \
