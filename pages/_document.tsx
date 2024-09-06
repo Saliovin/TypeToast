@@ -18,6 +18,10 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Azeret+Mono&display=swap"
           rel="stylesheet"
         />
+        <meta
+          http-equiv="Content-Security-Policy"
+          content="upgrade-insecure-requests"
+        ></meta>
       </Head>
       <body>
         <Main />
