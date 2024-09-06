@@ -12,7 +12,6 @@ import styles from "../styles/Home.module.css";
 import themes from "../styles/Themes.module.css";
 import wordList from "../wordlist.json";
 import themeList from "../themelist.json";
-import { Timestamp } from "firebase/firestore";
 import scoreService from "../services/score";
 import { Score } from "../interfaces/score";
 
