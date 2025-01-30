@@ -4,7 +4,7 @@
   height: 1.1rem;
   border-radius: 0.05rem;
   background-color: var(--strong-color);
-  transition: left 0.8s;
+  transition: left 0.08s;
   animation-name: blink;
   animation-duration: 0.5s;
   animation-iteration-count: infinite;
